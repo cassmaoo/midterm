@@ -31,7 +31,7 @@ function setup() {
 
   drawBackground();
 
-  //CME
+  //Draw CME particles
   let parRadius = 50;
   for (let i = 0; i < numParticles; i++) {
     let angle = map(i, 0, numParticles, 0, TWO_PI);
@@ -42,7 +42,7 @@ function setup() {
 
   getCME();
 
-  //FLR
+  //Draw FLR waves
   let flrRadius = 50;
   for (let i = 0; i < numWaves; i++) {
     waves.push(new Wave(0, 0, flrRadius, random(5, 20), random(1, 5)));
@@ -78,12 +78,12 @@ function setup() {
   
 }
 
-//show CME
+//show and hide CME when click on button
 function cmeParticles() {
   showParticles = !showParticles; 
 }
 
-//show FLR
+//show and hide FLR when click on button
 function flrWaves() {
   showWaves = !showWaves;
 }
@@ -184,6 +184,7 @@ function draw() {
   let innerColor = color(255, 69, 0); 
   let outerColor = color(255, 255, 224); 
 
+  //draw the lines in the bg
   for (let i = 0; i < totalLines; i++) {
     // Code reference: https://p5js.org/reference/#/p5/randomGaussian, example 2
     let r = randomGaussian(width * 0.2, width * 0.25);
@@ -228,7 +229,7 @@ function drawSun() {
   }
 }
 
-// Draw Sun
+// Draw the offset of the spiral
 function drawSunOffset(radius, offset) {
   beginShape();
   for (let a = 0; a < TWO_PI; a += 0.01) {
@@ -411,7 +412,7 @@ function drawNeptune() {
   ellipse(x, y, 10, 10);
 }
 
-//Date formatting
+//Date formatting. To be used in retrieving the right api website link
 function getFormattedDate() {
   const now = new Date();
   const year = now.getFullYear();
@@ -453,7 +454,7 @@ function processCME(data) {
 }
 }
 
-// CME
+// create the particles that represent CME
 class Particle {
   constructor(x, y, angle) {
     this.baseX = x;
@@ -502,7 +503,7 @@ function gotData(data) {
   processFLR(data);
 }
 
-// FLR
+// create waves to present FLR
 class Wave {
   constructor(x, y, radius, height, speed) {
     this.x = x;
